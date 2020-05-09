@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  isAuthenticated$: Observable<boolean>;
+
+  constructor(private authService: AuthenticationService) {
+    this.isAuthenticated$ = authService.isAuthenticated$;
+  }
 
   ngOnInit() {
+  }
+
+  onSignout() {
+    this.authService.signOut();
   }
 
 }

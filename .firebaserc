@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "nwsie-todo": {
+      "hosting": {
+        "nwise-todo": [
+          "nwsie-todo"
+        ]
+      }
+    }
+  }
+}

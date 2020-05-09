@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'nwise-todo';
+
+  constructor(private authService: AuthenticationService,
+              private router: Router) {
+    this.authService.isAuthenticated$.subscribe(u => {
+      if (!u) {
+        setTimeout(() => {
+          this.router.navigate(["signin"]);
+        });
+      }
+    });
+  }
 }

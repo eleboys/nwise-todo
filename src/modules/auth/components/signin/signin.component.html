@@ -1,1 +1,17 @@
-<p>signin works!</p>
+<h1>Signin</h1>
+<div>
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit($event)">
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" formControlName="email">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="text" name="password" id="password" formControlName="password">
+        </div>
+        <div>
+            <button type="submit" [disabled]="signinForm.invalid">Signin</button>
+        </div>
+    </form>
+    <button (click)="onGoogleSignIn()">Sign in with Google</button>
+</div>
