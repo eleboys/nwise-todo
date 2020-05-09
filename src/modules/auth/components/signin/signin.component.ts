@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
 
   signinForm: FormGroup;
+  errorMessage: string;
 
   constructor(private authService: AuthenticationService,
               private router: Router) { }
@@ -22,16 +23,22 @@ export class SigninComponent implements OnInit {
   onSubmit(): void {
     this.authService.signInEmailPassword(this.signinForm.value.email, this.signinForm.value.password)
                     .subscribe({
-                      next: (display) => this.router.navigate([""]),
-                      error: (er) => console.log(er)
+                      next: (display) => {
+                        this.router.navigate([""]);
+                        this.errorMessage = null;
+                      },
+                      error: (er) => this.errorMessage = er.message
                     });
   }
 
   onGoogleSignIn(): void {
     this.authService.signInWithGoogle()
                     .subscribe({
-                      next: (display) => this.router.navigate([""]),
-                      error: (er) => console.log(er)
+                      next: (display) => {
+                        this.router.navigate([""]);
+                        this.errorMessage = null;
+                      },
+                      error: (er) => this.errorMessage = er.message
                     });
   }
 
