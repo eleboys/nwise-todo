@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class IndexComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   isAuthenticated$: Observable<boolean>;
 
@@ -15,11 +15,11 @@ export class IndexComponent implements OnInit {
     this.isAuthenticated$ = authService.isAuthenticated$;
   }
 
-  ngOnInit() {
-  }
-
   onSignout() {
     this.authService.signOut();
+  }
+
+  ngOnInit() {
   }
 
 }

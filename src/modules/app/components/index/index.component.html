@@ -1,4 +1,0 @@
-<h1>Index</h1>
-<pre>{{isAuthenticated$ | async}}</pre>
-<a [routerLink]="['signin']" *ngIf="!(isAuthenticated$ | async)">SignIn</a> | 
-<a href="#" (click)="onSignout()" *ngIf="isAuthenticated$ | async">SignOut</a>

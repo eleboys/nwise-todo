@@ -8,7 +8,8 @@ const routes: Routes = [
   {
     path: "signin",
     component: SigninComponent,
-    canActivate: [ IsUnAuthenticatedGuard ]
+    canActivate: [ IsUnAuthenticatedGuard ],
+    data: { showHeader: false, showFooter: false }
   },
 ];
 

@@ -1,0 +1,4 @@
+<pre>{{isAuthenticated$ | async}}</pre>
+<a [routerLink]="['../signin']" *ngIf="!(isAuthenticated$ | async)">SignIn</a> | 
+<a (click)="onSignout()" *ngIf="isAuthenticated$ | async">SignOut</a> |
+<a [routerLink]="['../todo']">Todo</a>
