@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { User } from 'src/modules/auth/models/user.model';
 import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
-import { BaseComponent } from 'src/modules/shared/shared/models/base-component';
+import { BaseComponent } from 'src/modules/shared/models/base-component';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 

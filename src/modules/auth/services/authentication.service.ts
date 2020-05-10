@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { FirebaseService } from 'src/modules/shared/shared/services/firebase.service';
+import { FirebaseService } from 'src/modules/shared/services/firebase.service';
 import { Observable } from 'rxjs';
 
 import { User } from '../models/user.model';

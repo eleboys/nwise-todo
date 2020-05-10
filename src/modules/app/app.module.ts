@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TodoModule } from '../todo/todo.module';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AngularFireAuthModule,
     RouterModule.forRoot([]),
     AppRoutingModule,
+    SharedModule,
     AuthModule,
     TodoModule
   ],

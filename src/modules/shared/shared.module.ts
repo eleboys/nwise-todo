@@ -5,11 +5,14 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { FirebaseService } from './services/firebase.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { VarDirective } from './directives/var.directive';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    VarDirective
+  ],
   providers: [
     FirebaseService,
     LocalStorageService
@@ -18,6 +21,7 @@ import { LocalStorageService } from './services/local-storage.service';
     CommonModule
   ],
   exports: [
+    VarDirective
   ]
 })
 export class SharedModule { }

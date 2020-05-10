@@ -6,7 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SigninComponent } from './components/signin/signin.component';
 import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
 import { AuthenticationService } from './services/authentication.service';
-import { SharedModule } from '../shared/shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { IsUnAuthenticatedGuard } from './guards/is-un-authenticated.guard';
 
 

@@ -1,11 +1,16 @@
 <header class="flex justify-between items-stretch h-12 pl-4 bg-purple-600 text-white">
     <strong class="text-lg flex items-center">NWise Todo</strong>
-    <ng-container *ngIf="currentUser$ | async; let user">
+    <ng-container *appVar="currentUser$ | async as user">
         <button *ngIf="user != null"
                 (click)="signOut()"
                 class="px-2 hover:bg-purple-700 flex items-center">
             <span>{{user.displayName}}</span>
             <img [src]="user.avatarUrl" alt="Avatar" class="rounded-full h-8 w-8 mx-2 inline-block">
         </button>
+        <a class="px-4 hover:bg-purple-700 flex items-center px-2"
+           [routerLink]="['signin']" 
+           *ngIf="user == null">
+            SignIn
+        </a>
     </ng-container>
 </header>
