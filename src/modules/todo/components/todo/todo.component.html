@@ -1,0 +1,18 @@
+<div>
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+        <input type="text" class="bg-white border shadow rounded p-2 text-gray-700" formControlName="title">
+        <button type="submit" class="bg-blue-500 p-2 ml-2 rounded shadow border border-blue-600 text-white">Add</button>
+    </form>
+    <ul>
+        <li *ngFor="let todo of todos$ | async">
+          <label [ngClass]="{'line-through text-gray-500': todo.isDone, 'text-gray-700': !todo.isDone}">
+            <input type="checkbox" [ngModel]="todo.isDone" (ngModelChange)="todoUpdated(todo, $event)" class="mr-1">
+            {{todo.title}}
+          </label>
+        </li>
+    </ul>
+    <div>
+      <button class="bg-blue-500 p-2 ml-2 rounded shadow border border-blue-600 text-white"
+              (click)="onSync()">Sync</button>
+    </div>
+</div>

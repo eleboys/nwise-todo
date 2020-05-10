@@ -5,11 +5,6 @@ import { IsAuthenticatedGuard } from '../auth/guards/is-authenticated.guard';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
-  {
-    path: "home",
-    component: HomeComponent,
-  }
 ];
 
 @NgModule({

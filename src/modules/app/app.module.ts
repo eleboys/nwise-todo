@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,7 @@ import { SharedModule } from '../shared/shared.module';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     RouterModule.forRoot([]),
     AppRoutingModule,
     SharedModule,

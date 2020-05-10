@@ -15,6 +15,10 @@ export class AuthenticationService {
     this.subscribeToAuthStateChange();
   }
 
+  getCurrentUser(): User {
+    return this.authStore.get("currentUser");
+  }
+
   isAuthenticated(): boolean {
     return this.authStore.get("isAuthenticated");
   }
