@@ -1,34 +1,75 @@
 import { Injectable } from '@angular/core';
-
-import { FirebaseService } from 'src/modules/shared/services/firebase.service';
-import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable, from } from 'rxjs';
+import * as firebase from "firebase";
 
 import { User } from '../models/user.model';
+import { AuthenticationStore } from './authentication.store';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService {
 
-  isAuthenticated$: Observable<boolean>;
-  currentUser$: Observable<User>;
-
-  constructor(private firebaseService: FirebaseService) {
-    this.isAuthenticated$ = firebaseService.isAuthenticated$;
-    this.currentUser$ = firebaseService.currentUser$;
+  constructor(private fireAuth: AngularFireAuth,
+              private authStore: AuthenticationStore) {
+    this.subscribeToAuthStateChange();
   }
 
   isAuthenticated(): boolean {
-    return this.firebaseService.isAuthenticated();
+    return this.authStore.get("isAuthenticated");
   }
 
   signInEmailPassword(email: string, password: string): Observable<User> {
-    return this.firebaseService.signInEmailPassword(email, password);
+    const promise = new Promise<firebase.auth.UserCredential>((resolve, reject) => {
+      this.fireAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+        this.fireAuth.auth.signInWithEmailAndPassword(email, password).then(resolve).catch(reject);
+      }).catch(reject);
+    });
+
+    return from(promise).pipe(
+      map(c => this.firebaseAuthToUserModel(c.user))
+    );
   }
 
   signInWithGoogle(): Observable<User> {
-    return this.firebaseService.signInWithGoogle();
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const promise = new Promise<firebase.auth.UserCredential>((resolve, reject) => {
+      this.fireAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+        this.fireAuth.auth.signInWithPopup(provider).then(resolve).catch(reject);
+      }).catch(reject);
+    });
+
+    return from(promise).pipe(
+      map(c => this.firebaseAuthToUserModel(c.user))
+    );
   }
 
   signOut(): Observable<void> {
-    return this.firebaseService.signOut();
+    return from(this.fireAuth.auth.signOut());
+  }
+
+  private firebaseAuthToUserModel(u: firebase.User) {
+    const user = new User();
+    user.id = u.uid;
+    user.email = u.email;
+    user.displayName = u.displayName;
+    user.avatarUrl = u.photoURL;
+    return user;
+  }
+
+  private subscribeToAuthStateChange() {
+    this.fireAuth.authState.subscribe((fuser) => {
+      if (fuser) {
+        const user = this.firebaseAuthToUserModel(fuser);
+        this.authStore.set("currentUser", user);
+        this.authStore.set("isAuthenticated", true);
+      } else {
+        this.authStore.set("currentUser", null);
+        this.authStore.set("isAuthenticated", false);
+      }
+    }, (err) => {
+      this.authStore.set("currentUser", null);
+      this.authStore.set("isAuthenticated", false);
+    });
   }
 }

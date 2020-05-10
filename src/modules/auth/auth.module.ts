@@ -8,6 +8,7 @@ import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
 import { AuthenticationService } from './services/authentication.service';
 import { SharedModule } from '../shared/shared.module';
 import { IsUnAuthenticatedGuard } from './guards/is-un-authenticated.guard';
+import { AuthenticationStore } from './services/authentication.store';
 
 
 
@@ -25,7 +26,8 @@ import { IsUnAuthenticatedGuard } from './guards/is-un-authenticated.guard';
   providers: [
     IsAuthenticatedGuard,
     IsUnAuthenticatedGuard,
-    AuthenticationService
+    AuthenticationService,
+    AuthenticationStore
   ],
   exports: [
   ]

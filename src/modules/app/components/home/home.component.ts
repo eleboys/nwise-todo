@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
+import { AuthenticationStore } from 'src/modules/auth/services/authentication.store';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,9 @@ export class HomeComponent implements OnInit {
 
   isAuthenticated$: Observable<boolean>;
 
-  constructor(private authService: AuthenticationService) {
-    this.isAuthenticated$ = authService.isAuthenticated$;
+  constructor(private authStore: AuthenticationStore,
+              private authService: AuthenticationService) {
+    this.isAuthenticated$ = this.authStore.select("isAuthenticated");
   }
 
   onSignout() {

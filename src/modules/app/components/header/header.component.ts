@@ -3,9 +3,10 @@ import { Observable } from 'rxjs';
 
 import { User } from 'src/modules/auth/models/user.model';
 import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
-import { BaseComponent } from 'src/modules/shared/models/base-component';
+import { ComponentBase } from 'src/modules/shared/models/component-base';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthenticationStore } from 'src/modules/auth/services/authentication.store';
 
 
 @Component({
@@ -13,14 +14,15 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent extends BaseComponent implements OnInit {
+export class HeaderComponent extends ComponentBase implements OnInit {
 
   currentUser$: Observable<User>;
 
   constructor(private authService: AuthenticationService,
+              private authStore: AuthenticationStore,
               private router: Router) {
     super();
-    this.currentUser$ = authService.currentUser$;
+    this.currentUser$ = authStore.select("currentUser");
   }
 
   ngOnInit() {
