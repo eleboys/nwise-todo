@@ -4,6 +4,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
@@ -33,7 +34,8 @@ import { AppService } from './services/app.service';
     AppRoutingModule,
     SharedModule,
     AuthModule,
-    TodoModule
+    TodoModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AppStore,
