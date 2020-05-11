@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { SigninComponent } from './components/signin/signin.component';
 import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
-import { AuthenticationService } from './services/authentication.service';
+import { AuthService } from './services/auth.service';
 import { SharedModule } from '../shared/shared.module';
 import { IsUnAuthenticatedGuard } from './guards/is-un-authenticated.guard';
-import { AuthenticationStore } from './services/authentication.store';
+import { AuthStore } from './services/auth.store';
+import { AuthLocalStorageService } from './services/auth-local-storage.service';
 
 
 
@@ -26,8 +27,9 @@ import { AuthenticationStore } from './services/authentication.store';
   providers: [
     IsAuthenticatedGuard,
     IsUnAuthenticatedGuard,
-    AuthenticationService,
-    AuthenticationStore
+    AuthLocalStorageService,
+    AuthService,
+    AuthStore
   ],
   exports: [
   ]

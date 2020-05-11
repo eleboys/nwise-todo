@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { User } from 'src/modules/auth/models/user.model';
-import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
+import { AuthService } from 'src/modules/auth/services/auth.service';
 import { ComponentBase } from 'src/modules/shared/models/component-base';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { AuthenticationStore } from 'src/modules/auth/services/authentication.store';
+import { AuthStore } from 'src/modules/auth/services/auth.store';
 import { MenuItem } from '../../models/menu-item.model';
 import { AppStore } from '../../services/app-store';
 
@@ -21,8 +21,8 @@ export class HeaderComponent extends ComponentBase implements OnInit {
   currentUser$: Observable<User>;
   dropDownMenuItems$: Observable<MenuItem[]>;
 
-  constructor(private authService: AuthenticationService,
-              private authStore: AuthenticationStore,
+  constructor(private authService: AuthService,
+              private authStore: AuthStore,
               private appStore: AppStore,
               private router: Router) {
     super();
@@ -31,6 +31,10 @@ export class HeaderComponent extends ComponentBase implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onItemClick(item: MenuItem) {
+    item.click();
   }
 
   signOut() {

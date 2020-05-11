@@ -4,14 +4,14 @@ import { Observable, from } from 'rxjs';
 import * as firebase from "firebase";
 
 import { User } from '../models/user.model';
-import { AuthenticationStore } from './authentication.store';
-import { map } from 'rxjs/operators';
+import { AuthStore } from './auth.store';
+import { map, skip, distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable()
-export class AuthenticationService {
+export class AuthService {
 
   constructor(private fireAuth: AngularFireAuth,
-              private authStore: AuthenticationStore) {
+              private authStore: AuthStore) {
     this.subscribeToAuthStateChange();
   }
 
@@ -62,7 +62,11 @@ export class AuthenticationService {
   }
 
   private subscribeToAuthStateChange() {
-    this.fireAuth.authState.subscribe((fuser) => {
+    this.fireAuth.authState
+    .pipe(
+      distinctUntilChanged()
+    )
+    .subscribe((fuser) => {
       if (fuser) {
         const user = this.firebaseAuthToUserModel(fuser);
         this.authStore.set("currentUser", user);

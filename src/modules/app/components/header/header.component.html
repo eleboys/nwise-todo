@@ -13,7 +13,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="user != null">
             <a class="dropdown-item"
                *ngFor="let item of dropDownMenuItems$ | async"
-               (click)="item.click()">{{item.title}}</a>
+               (click)="onItemClick(item)">{{item.title}}</a>
             <a class="dropdown-item" (click)="signOut()">Sign Out</a>
           </div>
         </div>

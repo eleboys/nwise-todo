@@ -9,7 +9,7 @@ import {
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
 
-import { AuthenticationStore } from '../services/authentication.store';
+import { AuthStore } from '../services/auth.store';
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +17,7 @@ import { AuthenticationStore } from '../services/authentication.store';
 export class IsUnAuthenticatedGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authStore: AuthenticationStore
+    private authStore: AuthStore
   ) {}
 
   canActivate(

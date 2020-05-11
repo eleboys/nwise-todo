@@ -3,15 +3,15 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Rout
 import { Observable } from 'rxjs';
 
 import { LocalStorageService } from 'src/modules/shared/services/local-storage.service';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthService } from '../services/auth.service';
 import { map } from 'rxjs/operators';
-import { AuthenticationStore } from '../services/authentication.store';
+import { AuthStore } from '../services/auth.store';
 
 @Injectable()
 export class IsAuthenticatedGuard implements CanActivate {
 
   constructor(private router: Router,
-              private authStore: AuthenticationStore) {
+              private authStore: AuthStore) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {

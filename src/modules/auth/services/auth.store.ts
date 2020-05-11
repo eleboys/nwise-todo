@@ -6,7 +6,7 @@ const state: AuthState = {
     isAuthenticated: false
 };
 
-export class AuthenticationStore extends StoreBase<AuthState> {
+export class AuthStore extends StoreBase<AuthState> {
     constructor() {
         super(state);
     }

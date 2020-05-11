@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   errorMessage: string;
 
-  constructor(private authService: AuthenticationService,
+  constructor(private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {

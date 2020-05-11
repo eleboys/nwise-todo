@@ -42,6 +42,10 @@ export class TodoComponent extends ComponentBase implements OnInit {
     });
   }
 
+  deleteTodo(todo: Todo) {
+    this.todoService.deleteTodo(todo);
+  }
+
   todoUpdated(todo: Todo, val: boolean) {
     todo.isDone = val;
     this.todoService.updateTodo(todo);
