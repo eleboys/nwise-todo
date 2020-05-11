@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Guid } from "guid-typescript";
 
 import { TodoStore } from '../../services/todo-store';
 import { Todo } from '../../models/todo.model';

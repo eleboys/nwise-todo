@@ -1,16 +1,25 @@
-<header class="flex justify-between items-stretch h-12 pl-4 bg-purple-600 text-white">
-    <strong class="text-lg flex items-center">NWise Todo</strong>
-    <ng-container *appVar="currentUser$ | async as user">
-        <button *ngIf="user != null"
-                (click)="signOut()"
-                class="px-2 hover:bg-purple-700 flex items-center">
-            <span>{{user.displayName}}</span>
-            <img [src]="user.avatarUrl" alt="Avatar" class="rounded-full h-8 w-8 mx-2 inline-block">
-        </button>
-        <a class="px-4 hover:bg-purple-700 flex items-center px-2"
-           [routerLink]="['signin']" 
+<header>
+  <nav class="navbar navbar-dark bg-primary">
+    <span class="navbar-brand mb-0 h1">NWise Todo</span>
+    <div>
+      <ng-container *appVar="currentUser$ | async as user">
+        <div class="dropdown">
+          <a *ngIf="user != null"
+              class="px-2 text-white"
+              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span>{{user.displayName}}</span>
+              <img [src]="user.avatarUrl" alt="Avatar" class="navbar-avatar ml-2">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="user != null">
+            <a class="dropdown-item" (click)="signOut()">Sign Out</a>
+          </div>
+        </div>
+        <a class="px-2 text-white"
+           [routerLink]="['signin']"
            *ngIf="user == null">
             SignIn
         </a>
-    </ng-container>
+      </ng-container>
+    </div>
+  </nav>
 </header>

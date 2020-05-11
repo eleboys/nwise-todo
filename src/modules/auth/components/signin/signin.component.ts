@@ -24,7 +24,7 @@ export class SigninComponent implements OnInit {
     this.authService.signInEmailPassword(this.signinForm.value.email, this.signinForm.value.password)
                     .subscribe({
                       next: (display) => {
-                        this.router.navigate(["home"]);
+                        this.router.navigate([""]);
                         this.errorMessage = null;
                       },
                       error: (er) => this.errorMessage = er.message
@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
     this.authService.signInWithGoogle()
                     .subscribe({
                       next: (display) => {
-                        this.router.navigate(["home"]);
+                        this.router.navigate([""]);
                         this.errorMessage = null;
                       },
                       error: (er) => this.errorMessage = er.message

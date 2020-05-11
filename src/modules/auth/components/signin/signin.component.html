@@ -1,32 +1,38 @@
-<div class="flex flex-col justify-center bg-gray-200 h-full">
+<div class="d-flex flex-column justify-content-center bg-light h-full">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <div  class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          <strong class="mr-1">SingIn Failed!</strong>
+          <span>{{errorMessage}}</span>
+      </div>
 
-    <div class="xs:w-full sm:w-full md:w-2/5 lg:w-2/6 ml-auto mr-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4 text-sm" role="alert" *ngIf="errorMessage">
-        <strong class="font-bold mr-1">SingIn Failed!</strong>
-        <span class="block sm:inline">{{errorMessage}}</span>
+      <div class="bg-white rounded shadow px-5 py-4 mb-2">
+          <h1 class="text-center mb-4">Signin</h1>
+          <form class="mb-4 form-hrizontal" [formGroup]="signinForm" (ngSubmit)="onSubmit($event)">
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input class="form-control" type="text" id="email" name="email" formControlName="email">
+              </div>
+              <div class="mb-4">
+                  <label for="password">Password</label>
+                  <input class="form-control" type="password" name="password" id="password" formControlName="password">
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                  <button class="btn btn-primary" type="submit" [disabled]="signinForm.invalid">Signin</button>
+                  <a>Forgot Password?</a>
+              </div>
+          </form>
+          <button class="btn btn-block btn-default" (click)="onGoogleSignIn()">
+              <img src="https://cdn.worldvectorlogo.com/logos/google-icon.svg" class="inline-block w-6 h-6">
+              Sign in with Google
+          </button>
+      </div>
+
+      <div class="text-center text-secondary">
+        <small>
+          &copy;2020 NWise Todo. All rights reserved.
+        </small>
+      </div>
     </div>
-        
-    <div class="xs:w-full sm:w-full md:w-2/5 lg:w-2/6 ml-auto mr-auto bg-white rounded shadow-md p-5 mb-4">
-        <h1 class="text-center text-2xl mb-4">Signin</h1>
-        <form class="mb-4" [formGroup]="signinForm" (ngSubmit)="onSubmit($event)">
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-                <input class="w-full shadow border rounded py-2 px-3" type="text" id="email" name="email" formControlName="email">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-                <input class="w-full shadow border rounded py-2 px-3" type="password" name="password" id="password" formControlName="password">
-            </div>
-            <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" [disabled]="signinForm.invalid">Signin</button>
-                <a class="inline-block align-baseline font-bold text-sm text-blue-500">Forgot Password?</a>
-            </div>
-        </form>
-        <button class="bg-white text-left shadow rounded py-2 px-4 w-full" (click)="onGoogleSignIn()">
-            <img src="https://cdn.worldvectorlogo.com/logos/google-icon.svg" class="inline-block w-6 h-6 mr-6">
-            Sign in with Google
-        </button>
-    </div>
-    <p class="text-center text-gray-500 text-xs">
-    &copy;2020 NWise Todo. All rights reserved.
-    </p>
+  </div>
 </div>
