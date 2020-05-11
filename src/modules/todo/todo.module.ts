@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TodoStore } from './services/todo-store';
 import { TodoService } from './services/todo.service';
 import { AuthModule } from '../auth/auth.module';
+import { AppModule } from '../app/app.module';
 
 
 @NgModule({

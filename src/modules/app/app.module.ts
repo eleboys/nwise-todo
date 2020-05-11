@@ -14,6 +14,8 @@ import { TodoModule } from '../todo/todo.module';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
+import { AppStore } from './services/app-store';
+import { AppService } from './services/app.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,10 @@ import { SharedModule } from '../shared/shared.module';
     AuthModule,
     TodoModule
   ],
-  providers: [],
+  providers: [
+    AppStore,
+    AppService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

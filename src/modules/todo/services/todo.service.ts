@@ -2,19 +2,29 @@ import { Injectable } from '@angular/core';
 import { TodoStore } from './todo-store';
 import { Guid } from 'guid-typescript';
 import { AngularFirestore } from "@angular/fire/firestore";
+import { Observable, throwError, Subject, from } from 'rxjs';
 
 import { Todo } from '../models/todo.model';
 import { LocalStorageService } from 'src/modules/shared/services/local-storage.service';
-import { AuthenticationStore } from 'src/modules/auth/services/authentication.store';
 import { AuthenticationService } from 'src/modules/auth/services/authentication.service';
-import { Observable, throwError, Subject, from } from 'rxjs';
+
+import { AppService } from 'src/modules/app/services/app.service';
+import { MenuItem } from 'src/modules/app/models/menu-item.model';
 
 @Injectable()
 export class TodoService {
   constructor(private todoStore: TodoStore,
+              private appService: AppService,
               private authService: AuthenticationService,
               private lsService: LocalStorageService,
-              private fireStore: AngularFirestore) { }
+              private fireStore: AngularFirestore) {
+
+    const item = new MenuItem();
+    item.title = "Syncronize Data";
+    item.moduleName = "todo";
+    item.click = this.syncTodos.bind(this);
+    this.appService.addDropDownMenuItem(item);
+  }
 
   addNewTodo(title: string) {
     const todos = this.todoStore.get("todos") as Todo[];

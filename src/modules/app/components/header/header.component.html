@@ -11,6 +11,9 @@
               <img [src]="user.avatarUrl" alt="Avatar" class="navbar-avatar ml-2">
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="user != null">
+            <a class="dropdown-item"
+               *ngFor="let item of dropDownMenuItems$ | async"
+               (click)="item.click()">{{item.title}}</a>
             <a class="dropdown-item" (click)="signOut()">Sign Out</a>
           </div>
         </div>
