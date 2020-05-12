@@ -17,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppStore } from './services/app-store';
 import { AppService } from './services/app.service';
+import { PwaService } from './services/pwa.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AppService } from './services/app.service';
   ],
   providers: [
     AppStore,
-    AppService
+    AppService,
+    PwaService
   ],
   bootstrap: [AppComponent]
 })
